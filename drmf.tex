@@ -1,0 +1,321 @@
+% easychair.tex,v 3.2 2012/05/15
+%
+% Select appropriate paper format in your document class as
+% instructed by your conference organizers. Only withtimes
+% and notimes can be used in proceedings created by EasyChair
+%
+% The available formats are 'letterpaper' and 'a4paper' with
+% the former being the default if omitted as in the example
+% below.
+%
+\documentclass{easychair}
+%\documentclass[debug]{easychair}
+%\documentclass[verbose]{easychair}
+%\documentclass[notimes]{easychair}
+%\documentclass[withtimes]{easychair}
+%\documentclass[a4paper]{easychair}
+%\documentclass[letterpaper]{easychair}
+
+% This provides the \BibTeX macro
+\usepackage{doc}
+\usepackage{makeidx}
+
+% In order to save space or manage large tables or figures in a
+% landcape-like text, you can use the rotating and pdflscape
+% packages. Uncomment the desired from the below.
+%
+% \usepackage{rotating}
+% \usepackage{pdflscape}
+
+% If you plan on including some algorithm specification, we recommend
+% the below package. Read more details on the custom options of the
+% package documentation.
+%
+% \usepackage{algorithm2e}
+
+% Some of our commands for this guide.
+%
+\newcommand{\easychair}{\textsf{easychair}}
+\newcommand{\miktex}{MiK{\TeX}}
+\newcommand{\texniccenter}{{\TeX}nicCenter}
+\newcommand{\makefile}{\texttt{Makefile}}
+\newcommand{\latexeditor}{LEd}
+
+%\makeindex
+
+%% Document
+%%
+\begin{document}
+
+%% Front Matter
+%%
+% Regular title as in the article class.
+%
+\title{Digital Repository of Mathematical Formulae}
+
+% \titlerunning{} has to be set to either the main title or its shorter
+% version for the running heads. When processed by
+% EasyChair, this command is mandatory: a document without \titlerunning
+% will be rejected by EasyChair
+
+\titlerunning{The {\easychair} Class File}
+
+% Authors are joined by \and. Their affiliations are given by \inst, which indexes
+% into the list defined using \institute
+%
+\author{
+Howard S. Cohl\inst{1}
+\and
+    Deyan Ginev\inst{2}
+\and
+   Marje A.~McClain\inst{1}
+\and
+   Bonita V.~Saunders\inst{1}
+\and 
+   Moritz Schubotz\inst{3}
+\and 
+   Janelle C.~Williams \inst{4}
+}
+
+% Institutes for affiliations are also joined by \and,
+\institute{Applied and Computational Mathematics Division,\\
+National Institute of Standards and Technology,
+Gaithersburg, Maryland, U.S.A.\\
+\email{howard.cohl@nist.gov, marjorie.mcclain@nist.gov, bonita.saunders@nist.gov}
+\and
+School of Engineering and Science,
+Jacobs University, Bremen, Germany\\
+\email{d.ginev@jacobs-university.de}\\
+\and
+Database Systems and Information Management Group,\\
+Department of Software Engineering and Theoretical Computer Science,\\
+Technische Universit\"{a}t, Berlin, Germany\\
+\email{schbotz@tu-berlin.de}\\
+\and
+Department of Mathematics and Computer Science,\\
+Virginia State University, Petersburg, VA, U.S.A.\\
+\email{janelle.williams35@gmail.com}\\
+}
+\authorrunning{Cohl, Ginev, McClain, Saunders, Schubotz and Williams} 
+% has to be set for the shorter version of the authors' names;
+% otherwise a warning will be rendered in the running heads. When processed by
+% EasyChair, this command is mandatory: a document without \authorrunning
+% will be rejected by EasyChair
+
+%\authorrunning{Mokhov, Sutcliffe, Voronkov and Gough}
+
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{abstract}
+The purpose of the Digital Repository of Mathematical Formulae (DRMF) is to 
+create a digital knowledge base of mathematical formulae for orthogonal polynomials 
+and special functions (OPSF) and of associated mathematical data.  The DRMF 
+addresses two separate needs of working mathematicians, physicists and engineers: 
+providing the technical infrastructure to publish and interact with OPSF formulae
+on the web, as well as the editorial insight to successfully curate such a resource.  
+Using MediaWiki, the DRMF builds on top of previous efforts, adapting their technology 
+to support OPSF as a scientific web domain.  Whereas PlanetMath and Wikipedia expose 
+concepts or terms as first-class objects, both from a system and authoring perspective, 
+the DRMF does that with mathematical formulae.
+\end{abstract}
+
+%\setcounter{tocdepth}{2} {\small \tableofcontents}
+
+%\section{To mention}
+%
+%Processing in EasyChair - number of pages.
+%
+%Examples of how EasyChair processes papers. Caveats (replacement of EC
+%class, errors).
+
+%\pagestyle{empty}
+
+
+%------------------------------------------------------------------------------
+\section{Introduction}
+\label{sect:introduction}
+
+Compendia of mathematical formulae have a long and rich history. Many
+scientists have developed such repositories as books and these have been
+extremely useful to scientists, mathematicians and engineers over the last 
+several centuries (see 
+\cite{
+Brych,
+ErdelyiHTF,
+ErdelyiTIT,
+Grad,
+MOS,
+PrudBrychMar}
+for instance).  
+There has been much overlap in formulae for the different 
+compendia, but 
+useful specific information has often been captured in 
+single references and one often would need to be familiar with many different
+compendia to find to a desired formula.  Online compendia of mathematical 
+formulae exist such as voluminous Wolfram Functions Site 
+(\url{http://functions.wolfram.com/}), subsets of Wikipedia 
+(\url{http://en.wikipedia.org}), and the NIST Digital Library of Mathematical
+Functions (\url{http://dlmf.nist.gov/}).  We hope to take advantage of the
+best aspects of these online efforts and to take advantage of powerful new
+features which a community arm of scientists should find beneficial.
+Ingredients which we would like the online repository to incorporate include: 
+\begin{itemize}
+\item the ability to interact with a community of mathematicians and scientists 
+who may enter formulae data relevant to their own research related to OPSF 
+(as Wikis easily allow),
+\item should not be limited in its description 
+to an ``encyclopedic'' viewpoint, i.e.~understandable only to those who are 
+members of the general public, 
+\item should be internally understandable in a standalone fashion
+(for instance by consistently using extended \LaTeX ML DLMF (eDLMF) macros to define 
+special functions to allow for easy access to definitions and to facilitate 
+cross-repository search),
+\item should not be limited in size as in a printed book,
+\item should have a user friendly and consistent viewpoint and authoring perspective,
+\item should take advantage of powerful modern MathML tools for easy to read rendered 
+mathematics at different font sizes, 
+\item should have the ability to link to currently existing online resources.
+\end{itemize}
+Note that we have summarized our mission requirements in an online document
+(\url{http://drmf.instance-proxy.wmflabs.org/wiki/DRMF_Requirements}).
+It is the desire of our group to build a tool which 
+attempts to bring the above features together to be a tool for mathematicians 
+and scientists to bridge together currently existing compendia and to publish new orthogonal 
+polynomial and special function (OPSF) formulae, and their corresponding 
+mathematical data, online and on the web.  We will refer to this web tool as a
+Digital Repository of Mathematical Formulae (DRMF).
+
+An origination of this concept can be ascertained by viewing a Society for
+Industrial and Applied Mathematics activity group OPSF-Net post by Dmitry Karp 
+(2011) \cite[Topic \#5]{OPSFNET18_4}.  
+In that OPSF-Net edition, there were two related 
+posts \cite[Topic \#6, Topic\#7]{OPSFNET18_4} with a follow-up post in
+\cite[Topic \#3]{OPSFNET18_6}.
+
+\section{Implementation}
+
+On the technical front, we have built on the experience of the 
+DLMF project \cite[see also \url{http://dlmf.nist.gov}]{NIST}, as well as the 
+Planetary (\url{http://planetmath.org}) and 
+MediaWiki (\url{http://www.mediawiki.org}) publishing platforms. 
+Each feature of the publishing process is modeled 
+as a separate general-purpose MediaWiki extension, and published on GitHub 
+(\url{https://github.com}) for 
+redistribution.  The first demonstration provides experimental extensions 
+for (1) formula interactivity, (2) formula home pages, (3) centralized bibliography 
+and (4) mathematical search. At its foundation, DRMF shares the core technologies 
+of the DLMF, based on community-recognized open standards (\TeX, 
+HTML+MathML), as 
+stringed together by the \LaTeX ML (\url{http://dlmf.nist.gov/LaTeXML/}) converter. We incorporate some of the high-quality 
+components used in Planetary: the JOBAD interactivity framework
+(\url{https://github.com/KWARC/jobad}), MathWebSearch search engine
+(\url{http://search.mathweb.org/}), as well as those designed for 
+MediaWiki: the MathSearch 
+(\url{http://www.mediawiki.org/wiki/Extension:MathSearch})
+and Math extension
+(\url{http://www.mediawiki.org/wiki/Extension:Math}).  
+We will investigate the use of MathJax and JOBAD for menues and formula interactivity 
+mechanisms that we hope to incorporate. 
+
+Examples of formula 
+interactivity include:
+\begin{itemize}
+\item a clipboard for mathematics, allowing easy copy/paste of a formula's source, presentation or content representations;
+\item on-demand summary of constraints and substitutions applicable to a formula;
+\item on-demand consulting with external web services 
+(e.g., WolframAlpha (\url{https://www.wolframalpha.com/})) 
+and local computer algebra systems (e.g., Mathematica \cite{Mathematica}, 
+Maple (\url{http://www.maplesoft.com}), Sage
+(\url{http://www.sagemath.org/})).
+\end{itemize}
+
+The DRMF's first vision of a repository for mathematical formulae is to treat any 
+notable expression as a primary object of interest, describing it in its 
+own formula home page. Currently, formula home pages contain: (1) a description of 
+the formula itself, (2) open section for proofs, (3) bibliographic citations, 
+and (4) a glossary of special extended DLMF symbols and \LaTeX ML extended DLMF 
+(eDLMF) macros used in the formula with links to 
+definitions, and (5) a link to the formula in the DLMF, whenever applicable.  
+Optionally, one may also enter relevant constraints, 
+substitutions, notes, the formula name, as well as links to formula generalizations 
+and specializations.  For each formula home page there is a corresponding talk page 
+where discussions about the formula and its page may take place. We are 
+incorporating a strategy for handling the insertion of formula errata.
+
+We are also exploring a variety of search strategies within our MediaWiki
+deployment. A key asset in our development of search capabilities is the use of 
+eDLMF macros in writing the \TeX\,\,markup of formulae. \LaTeX ML uniquely translates the 
+macros for specific special functions, orthogonal polynomials and general 
+mathematical objects into Content MathML symbols, which in turn fuel structural 
+search engines, such as MathWebSearch, to return results with very high accuracy.
+
+Next, we present an early overview of the shortlisted seed resources which we plan 
+to incorporate. We have been given permission to seed the DRMF with data from the 
+NIST DLMF \cite{NIST}.  We would also like to extend the DLMF list of formulae by
+including all relevant formulae which are cited within the DLMF.  We have also been
+given permission to include formulae data from Koekoek, Lesky and Swarttouw's (KLS) 
+book \cite{Koekoeketal}.  We also plan to incorporate Tom Koornwinder's 
+additions to KLS which are given in \cite{KoornwinderKLSadd}.
+We have also been given permission to incorporate seed formula data from the
+Bateman Manuscript Project (BMP) Higher Transcendental Functions and Tables 
+of Integral Transforms \cite{ErdelyiHTF,ErdelyiTIT}.  Efforts to 
+upload BMP data are known to be extremely difficult since this effort will rely 
+on the use of mathematical optical character recognition software to produce 
+\LaTeX\,\,source for these formulae. This effort is currently under consideration
+for feasibility of use.
+We are in active communication with other publishers to get permission for other 
+proven sources for mathematical formulae.  
+
+Our current focus is on seeding the 
+DRMF with DLMF data, and we have completed this for Chapter 25 in the DLMF entitled
+Zeta and Related Functions.  Future near-term efforts will focus on seeding the rest of 
+the DLMF data as well as the KLS data with eDLMF macros incorporated.  
+
+
+\section*{Acknowledgements}
+
+We would like to express our deep gratitude to the KWARC group at Jacobs University,
+Bremen, Germany, and especially to its group leader, Michael Kohlhase, for allowing 
+us to use their server in the initial stages of our DRMF development.  We would
+also like to thank Dan Lozier, Tom Koornwinder, Dmitry Karp, Dan Zwillinger, 
+Victor Moll, Bruce Miller, and Hans Volkmer for offering their advice and for
+valuable discussions.
+
+%------------------------------------------------------------------------------
+% Refs:
+%
+\label{sect:bib}
+\bibliographystyle{plain}
+%\bibliographystyle{alpha}
+%\bibliographystyle{unsrt}
+%\bibliographystyle{abbrv}
+\bibliography{/home/hcohl/tex/refbib}
+
+%------------------------------------------------------------------------------
+%\appendix
+%\section{{\easychair} Requirements Specification}
+%\label{sect:easychair-requirements}
+
+%\begin{figure}
+%  \begin{centering}
+%    \includegraphics[width=0.89\textwidth]{debug.pdf}
+%    \caption{A page of a document created using the \texttt{debug}
+%      option} 
+%    \label{fig:redframe}
+%  \end{centering}
+%\end{figure}
+
+
+%------------------------------------------------------------------------------
+% Index
+%\printindex
+
+%------------------------------------------------------------------------------
+\end{document}
+
+% EOF
